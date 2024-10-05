@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Your Dashboard Title{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <!-- ========================= Main ==================== -->
+    
+        
+    
+        <!-- ======================= Cards ================== -->
+        <div class="cardBox">
+            <div class="card">
+                <div class="cardContent">
+                    <div class="numbers">{{ full_name }}</div>
+                    <div class="cardName">Welcome</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="person-outline" class="icon"></ion-icon>
+                </div>
+            </div>
+            
+
+            <div class="card">
+                <div>
+                    <div class="numbers" id="requestCount">{{request_count}}</div>
+                    <div class="cardName">Today's Usage</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="bar-chart-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers" id="todaysUsage">10</div>
+                    <div class="cardName">Remaining</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="stats-chart-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers"id="totalComments">{{ total_comments }}</div>
+                    <div class="cardName">Total Comments</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="chatbubbles-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================ Order Details List ================= -->
+        <div class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Recent Orders</h2>
+                    <a href="#" class="btn">View All</a>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Price</td>
+                            <td>Payment</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Star Refrigerator</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                            <td><span class="status delivered">Delivered</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Dell Laptop</td>
+                            <td>$110</td>
+                            <td>Due</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Apple Watch</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                            <td><span class="status return">Return</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Addidas Shoes</td>
+                            <td>$620</td>
+                            <td>Due</td>
+                            <td><span class="status inProgress">In Progress</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Star Refrigerator</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                            <td><span class="status delivered">Delivered</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Dell Laptop</td>
+                            <td>$110</td>
+                            <td>Due</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Apple Watch</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                            <td><span class="status return">Return</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Addidas Shoes</td>
+                            <td>$620</td>
+                            <td>Due</td>
+                            <td><span class="status inProgress">In Progress</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            
+        </div>
+    
+</div>
+<script>
+    // Get user_id from the template context
+    const userId = JSON.parse('{{ user_id }}');
+
+    // Function to fetch the updated request count
+    function fetchRequestCount() {
+        fetch(`/get_request_count/${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update the request count in the second card
+                document.getElementById('requestCount').innerText = data.request_count;
+
+                // Calculate and update today's usage
+                const requestCount = data.request_count || 0; // Default to 0 if no request count
+                const todaysUsage = 10 - requestCount; // Calculate today's usage
+                document.getElementById('todaysUsage').innerText = todaysUsage; // Update today's usage
+            })
+            .catch(error => console.error('Error fetching request count:', error));
+    }
+
+    // Function to fetch the total comment count
+    function fetchCommentCount() {
+        fetch(`/get_comment_count/${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update the total comments in the last card
+                document.getElementById('totalComments').innerText = data.total_comments;
+            })
+            .catch(error => console.error('Error fetching comment count:', error));
+    }
+
+    // Fetch the request count every 5 seconds
+    setInterval(fetchRequestCount, 2000); // Adjust the interval as needed
+
+    // Fetch the comment count every 5 seconds
+    setInterval(fetchCommentCount, 2000); // Adjust the interval as needed
+</script>
+
+{% endblock %}

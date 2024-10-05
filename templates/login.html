@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Colorlib Login Form</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+</head>
+<body>
+    <div class="main-w3layouts wrapper">
+        <h1>Creative Login Form</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <!-- Display flash messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div>
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+
+                <form method="post">
+                    <input class="text email" type="email" name="email" placeholder="Email" required="">
+                    <input class="text" type="password" name="password" placeholder="Password" required="">
+                    <div class="wthree-text">
+                        <label class="anim">
+                            <input type="checkbox" class="checkbox" required="">
+                            <span>Remember Me</span>
+                        </label>
+                        <div class="clear"></div>
+                    </div>
+                    <input type="submit" value="SIGN IN">
+                </form>
+                <p>Don't have an Account? <a href="/register"> SignUp Now!</a></p>
+            </div>
+        </div>
+        <ul class="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

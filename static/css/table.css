@@ -1,0 +1,19 @@
+.table-wrapper {
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Fix the table header */
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #343a40; /* Adjust background color to match the table theme */
+    color: white; /* Ensure text is visible */
+}
+
+/* Optional: Add shadow to header when scrolling */
+.table-wrapper thead th {
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}

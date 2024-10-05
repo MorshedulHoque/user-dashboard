@@ -1,0 +1,6 @@
+Flask
+Flask-MySQLdb
+MySQL-python
+Werkzeug
+cryptography
+flask-cors

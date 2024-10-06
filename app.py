@@ -145,9 +145,45 @@ def billing():
 def notifications():
     return render_template("notifications.html")
 
-@app.route("/profile")
+@app.route("/profile", methods=['GET', 'POST'])
 def profile():
-    return render_template("profile.html")
+    # Ensure user is logged in
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    if request.method == 'POST':
+        # Get form data
+        new_name = request.form['name']
+        new_password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        # Update user name
+        if new_name:
+            cursor.execute('UPDATE user SET full_name = %s WHERE Id = %s', (new_name, user_id))
+        
+        # Update password if provided and confirmed
+        if new_password and new_password == confirm_password:
+            hashed_password = generate_password_hash(new_password)
+            cursor.execute('UPDATE user SET password = %s WHERE Id = %s', (hashed_password, user_id))
+        elif new_password != confirm_password:
+            flash('Passwords do not match!', 'danger')
+            return render_template('profile.html', current_user={'name': session['full_name']})
+        
+        mysql.connection.commit()
+        flash('Profile updated successfully!', 'success')
+
+        # Update session data if name changed
+        session['full_name'] = new_name
+
+    # Fetch current user info
+    cursor.execute('SELECT full_name FROM user WHERE Id = %s', (user_id,))
+    user = cursor.fetchone()
+    cursor.close()
+
+    return render_template('profile.html', current_user=user)
 
 @app.route('/signout')
 def signout():

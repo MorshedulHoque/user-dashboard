@@ -46,48 +46,114 @@
 <div class="bg-white rounded-lg shadow-lg">
     <div class="p-4 border-b">
         <h2 class="text-lg font-semibold">Recent Orders</h2>
-        <a href="#" class="text-blue-500 hover:underline">View All</a>
+        <a href="{{ url_for('table') }}" class="text-blue-500 hover:underline flex items-center p-2 space-x-3 rounded-md ">View All</a>
     </div>
 
-    <table class="min-w-full">
-        <thead>
-            <tr class="bg-gray-200 text-gray-600 transition-transform transform hover:scale-100 hover:bg-sky-300">
-                <td class="px-4 py-2">Name</td>
-                <td class="px-4 py-2">Price</td>
-                <td class="px-4 py-2">Payment</td>
-                <td class="px-4 py-2">Status</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="hover:bg-sky-300 transition-transform transform hover:scale-100">
-                <td class="border-b px-4 py-2">Star Refrigerator</td>
-                <td class="border-b px-4 py-2">$1200</td>
-                <td class="border-b px-4 py-2">Paid</td>
-                <td class="border-b px-4 py-2"><span class="status delivered text-green-500">Delivered</span></td>
-            </tr>
-
-            <tr class="hover:bg-sky-300 transition-transform transform hover:scale-100">
-                <td class="border-b px-4 py-2">Dell Laptop</td>
-                <td class="border-b px-4 py-2">$110</td>
-                <td class="border-b px-4 py-2">Due</td>
-                <td class="border-b px-4 py-2"><span class="status pending text-yellow-500">Pending</span></td>
-            </tr>
-
-            <tr class="hover:bg-sky-300 transition-transform transform hover:scale-100">
-                <td class="border-b px-4 py-2">Apple Watch</td>
-                <td class="border-b px-4 py-2">$1200</td>
-                <td class="border-b px-4 py-2">Paid</td>
-                <td class="border-b px-4 py-2"><span class="status return text-red-500">Return</span></td>
-            </tr>
-
-            <tr class="hover:bg-sky-300 transition-transform transform hover:scale-100">
-                <td class="border-b px-4 py-2">Adidas Shoes</td>
-                <td class="border-b px-4 py-2">$620</td>
-                <td class="border-b px-4 py-2">Due</td>
-                <td class="border-b px-4 py-2"><span class="status inProgress text-blue-500">In Progress</span></td>
-            </tr>
-        </tbody>
-    </table>
+    <!--Table-->
+    <div class="container mt-6">
+        <div class="table-wrapper overflow-y-auto max-h-[500px] rounded-lg shadow-lg border border-gray-300">
+            <table class="min-w-full bg-white border-collapse">
+                <thead class="bg-sky-800 text-white sticky top-0 z-10">
+                    <tr>
+                        <th class="py-4 px-6 text-left text-sm font-semibold">#</th>
+                        <th class="py-4 px-6 text-left text-sm font-semibold">Post Text</th>
+                        <th class="py-4 px-6 text-left text-sm font-semibold">Generated Comment</th>
+                        <th class="py-4 px-6 text-left text-sm font-semibold">Emotion</th>
+                        <th class="py-4 px-6 text-left text-sm font-semibold">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="commentsTable" class="bg-gray-50 text-gray-700">
+                    <!-- Rows will be added by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 hidden bg-gray-800 bg-opacity-75 flex items-center justify-center">
+        <div class="bg-white rounded-lg p-6 w-11/12 max-w-lg">
+            <h2 class="text-xl font-semibold mb-4">Details</h2>
+            <div id="modalContent"></div>
+            <button id="closeModal" class="mt-4 text-white bg-sky-900 hover:bg-sky-950 px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        // Function to truncate text
+        function truncateText(text, length) {
+            if (text.length <= length) {
+                return text;
+            } else {
+                return text.substring(0, length) + '...'; // Append ellipsis
+            }
+        }
+    
+        // AJAX request to get the comments
+        $.ajax({
+            url: '/get_comments/{{ user_id }}', // Flask endpoint
+            method: 'GET',
+            dataType: 'json',
+            success: function(comments) {
+                var tableBody = $('#commentsTable');
+                comments.forEach(function(comment, index) {
+                    var postText = truncateText(comment.post_text, 50); // Adjust length here
+                    var postComment = truncateText(comment.generated_comment, 50); // Adjust length here
+    
+                    var row = `<tr class="hover:bg-gray-200 transition duration-300">
+                        <th class="py-4 px-6 border-b border-gray-300 text-sm font-medium">${index + 1}</th>
+                        <td class="py-4 px-6 border-b border-gray-300">
+                            <div class="text-preview font-medium text-gray-800">${postText}</div>
+                            <span class="show-more-post text-blue-600 cursor-pointer hover:underline" data-text="${comment.post_text}">Show More</span>
+                        </td>
+                        <td class="py-4 px-6 border-b border-gray-300">
+                            <div class="text-preview font-medium text-gray-800">${postComment}</div>
+                            <span class="show-more-comment text-blue-600 cursor-pointer hover:underline" data-text="${comment.generated_comment}">Show More</span>
+                        </td>
+                        <td class="py-4 px-6 border-b border-gray-300 text-sm font-medium">${comment.emotion}</td>
+                        <td class="py-4 px-6 border-b border-gray-300 text-sm font-medium">${new Date(comment.created_at).toLocaleString()}</td>
+                    </tr>`;
+                    tableBody.append(row);
+                });
+    
+                // Show modal on click of Show more for post text
+                $(document).on('click', '.show-more-post', function() {
+                    var fullText = $(this).data('text');
+                    var modalContent = `<p><strong>Post Text:</strong> ${fullText}</p>`;
+                    $('#modalContent').html(modalContent);
+                    $('#modal').removeClass('hidden');
+                });
+    
+                // Show modal on click of Show more for generated comment
+                $(document).on('click', '.show-more-comment', function() {
+                    var fullText = $(this).data('text');
+                    var modalContent = `<p><strong>Generated Comment:</strong> ${fullText}</p>`;
+                    $('#modalContent').html(modalContent);
+                    $('#modal').removeClass('hidden');
+                });
+    
+                // Close modal on clicking the close button
+                $('#closeModal').on('click', function() {
+                    $('#modal').addClass('hidden');
+                });
+    
+                // Close modal when clicking outside of it
+                $('#modal').on('click', function(event) {
+                    if ($(event.target).is('#modal')) {
+                        $('#modal').addClass('hidden');
+                    }
+                });
+            },
+            error: function() {
+                var tableBody = $('#commentsTable');
+                tableBody.append(`<tr><td colspan="5" class="py-4 text-center border-b border-gray-300">Failed to load comments. Please try again later.</td></tr>`);
+            }
+        });
+    });
+    
+    </script>
+    <!--Table End-->
 </div>
 
 

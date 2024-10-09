@@ -3,69 +3,68 @@
 {% block title %}Profile - Your Dashboard{% endblock %}
 
 {% block content %}
-    <div class="container mt-5">
-        <h1 class="mb-4">Profile</h1>
-        <p class="lead">Update your profile information below:</p>
+<div class="container mx-auto mt-10 px-4">
+    <h1 class="text-4xl font-bold text-gray-800 mb-6">Profile</h1>
+    <p class="text-lg text-gray-600 mb-4">Update your profile information below:</p>
 
-        <!-- Flash message for success or error -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <div class="alert alert-dismissible fade show">
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              {% endfor %}
+    <!-- Flash message for success or error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="mb-4">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} bg-{{ category }}-100 border border-{{ category }}-300 text-{{ category }}-700 rounded-lg p-4 mb-2" role="alert">
+              {{ message }}
+              <button type="button" class="close text-{{ category }}-500 hover:text-{{ category }}-700" aria-label="Close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          {% endif %}
-        {% endwith %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 
-        <form method="POST" action="{{ url_for('profile') }}" class="needs-validation" novalidate>
-            <!-- Name input field -->
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" class="form-control" value="{{ current_user['full_name'] }}" required>
-                <div class="invalid-feedback">
-                    Please enter your name.
-                </div>
-            </div>
+    <form method="POST" action="{{ url_for('profile') }}" class="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+        <!-- Name input field -->
+        <div class="mb-6">
+            <label for="name" class="block text-gray-700 text-lg font-semibold mb-2">Name:</label>
+            <input type="text" id="name" name="name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="{{ current_user['full_name'] }}" required>
+            
+        </div>
 
-            <!-- Password input fields -->
-            <div class="form-group">
-                <label for="password">New Password:</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter new password">
-            </div>
+        <!-- Password input fields -->
+        <div class="mb-6">
+            <label for="password" class="block text-gray-700 text-lg font-semibold mb-2">New Password:</label>
+            <input type="password" id="password" name="password" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter new password">
+        </div>
 
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm new password">
-            </div>
+        <div class="mb-6">
+            <label for="confirm_password" class="block text-gray-700 text-lg font-semibold mb-2">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Confirm new password">
+        </div>
 
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
-        </form>
-    </div>
+        <!-- Submit button -->
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-full transition duration-200">
+            Save Changes
+        </button>
+    </form>
+</div>
 
-    <!-- Optional JavaScript for Bootstrap features -->
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                var forms = document.getElementsByClassName('needs-validation');
-                Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+<!-- Optional JavaScript for form validation -->
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 {% endblock %}

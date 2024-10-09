@@ -49,6 +49,14 @@ def get_comments(user_id):
     comments = cursor.fetchall()
     return jsonify(comments), 200
 
+@app.route('/get_comments_top5/<int:user_id>', methods=['GET'])
+def get_comments_top5(user_id):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT post_text, generated_comment, emotion, created_at FROM comments_history WHERE user_id = %s ORDER BY created_at DESC LIMIT 5', 
+                   (user_id,))
+    comments = cursor.fetchall()
+    return jsonify(comments), 200
+
 @app.route('/get_comment_count/<int:user_id>', methods=['GET'])
 def get_comment_count(user_id):
     try:

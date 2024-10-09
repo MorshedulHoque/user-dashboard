@@ -6,6 +6,19 @@
     <title>Creative Colorlib Login Form</title>
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <style>
+    .forgot-password-link {
+        display: block; /* or inline-block, depending on layout preference */
+        margin-top: 10px; /* adjust as needed */
+        color: #007BFF; /* you can choose any color */
+        text-decoration: none; /* removes underline */
+        }
+
+    .forgot-password-link:hover {
+        text-decoration: underline; /* adds underline on hover for better user interaction */
+        }
+
+    </style>
 </head>
 <body>
     <div class="main-w3layouts wrapper">
@@ -36,8 +49,12 @@
                         <div class="clear"></div>
                     </div>
                     <input type="submit" value="SIGN IN">
+                    <!-- Forgot password link -->
+                    <div>
+                        <a href="/forgot-password" class="forgot-password-link">Forgot Password?</a>
+                    </div>
                 </form>
-                <p>Don't have an Account? <a href="/register"> SignUp Now!</a></p>
+                <p>Don't have an Account? <a href="/register">SignUp Now!</a></p>
             </div>
         </div>
         <ul class="colorlib-bubbles">

@@ -4146,6 +4146,10 @@ details.collapse summary::-webkit-details-marker {
   min-height: 100vh;
 }
 
+.min-h-\[400px\] {
+  min-height: 400px;
+}
+
 .w-1 {
   width: 0.25rem;
 }

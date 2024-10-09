@@ -51,7 +51,10 @@
 
     <!--Table-->
     <div class="container mt-6">
-        <div class="table-wrapper overflow-y-auto max-h-[500px] rounded-lg shadow-lg border border-gray-300">
+
+
+        <div class="table-wrapper min-h-[400px] rounded-lg shadow-lg border border-gray-300">
+
             <table class="min-w-full bg-white border-collapse">
                 <thead class="bg-sky-800 text-white sticky top-0 z-10">
                     <tr>
@@ -73,7 +76,10 @@
     <div id="modal" class="fixed inset-0 z-50 hidden bg-gray-800 bg-opacity-75 flex items-center justify-center">
         <div class="bg-white rounded-lg p-6 w-11/12 max-w-lg">
             <h2 class="text-xl font-semibold mb-4">Details</h2>
-            <div id="modalContent"></div>
+
+
+            <div id="modalContent" class="text-black"></div>
+
             <button id="closeModal" class="mt-4 text-white bg-sky-900 hover:bg-sky-950 px-4 py-2 rounded">Close</button>
         </div>
     </div>
@@ -92,7 +98,9 @@
     
         // AJAX request to get the comments
         $.ajax({
-            url: '/get_comments/{{ user_id }}', // Flask endpoint
+
+            url: '/get_comments_top5/{{ user_id }}', // Flask endpoint
+
             method: 'GET',
             dataType: 'json',
             success: function(comments) {

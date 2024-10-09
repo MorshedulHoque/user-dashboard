@@ -1,19 +1,107 @@
+/* General table styling */
+.table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden; /* Ensures border-radius works */
+}
+
+/* Header styling */
+.table thead {
+  background-color: #343a40; /* Dark gray */
+  color: #ffffff; /* White text */
+  text-align: left; /* Align text to the left */
+}
+
+.table thead th {
+  padding: 15px; /* Padding for header cells */
+  font-weight: bold; /* Bold text for headers */
+}
+
+/* Body row styling */
+.table tbody {
+  background-color: #f8f9fa; /* Light gray background for the table body */
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #dee2e6; /* Light border for rows */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Row styling */
+.table tbody tr td {
+  padding: 15px; /* Padding for body cells */
+}
+
+/* Hover effect for rows */
+.table tbody tr:hover {
+  background-color: #e2e6ea; /* Light gray on hover */
+}
+
+/* Text preview for truncated text */
+.text-preview {
+  font-weight: 500; /* Slightly bold */
+  color: #495057; /* Darker gray for better readability */
+}
+
+.text-more {
+  color: #6c757d; /* Muted text color */
+}
+
+/* Show more button */
+.show-more {
+  color: #007bff; /* Bootstrap primary color */
+  cursor: pointer; /* Pointer on hover */
+  text-decoration: underline; /* Underline for link-like appearance */
+}
+
+/* Optional: Style for empty state */
+.empty-state {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d; /* Muted text color */
+}
+
 .table-wrapper {
-    max-height: 500px; /* Adjust the height as needed */
-    overflow-y: auto;
-    position: relative;
+  max-height: 500px; /* Adjust the height as needed */
+  overflow-y: auto;
+  position: relative;
+  border-radius: 10px; /* Added border radius for smoother edges */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  background-color: var(--white); /* Ensuring consistency with your theme */
+  margin-top: 20px; /* Adding some spacing above */
 }
 
 /* Fix the table header */
 thead th {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: #343a40; /* Adjust background color to match the table theme */
-    color: white; /* Ensure text is visible */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(
+    --blue
+  ); /* Use your primary theme color for consistency */
+  color: var(--white); /* Ensure text is visible */
+  padding: 12px 15px; /* Adding padding for better touch/click area */
+  font-weight: 600; /* Making the header bold for emphasis */
+  text-align: left; /* Align text to the left for readability */
+  transition: background-color 0.3s ease; /* Smooth transition on scroll */
 }
 
 /* Optional: Add shadow to header when scrolling */
 .table-wrapper thead th {
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.4); /* Lighter shadow for a more subtle effect */
+}
+
+/* Style for the table body cells */
+tbody td {
+  padding: 12px 15px; /* Consistent padding */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border for separation */
+  background-color: var(--white); /* Keep body cells consistent */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+tbody tr:hover td {
+  background-color: var(--light-blue); /* Highlight row on hover */
+  color: var(--white); /* Change text color for visibility */
 }

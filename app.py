@@ -36,18 +36,6 @@ def login():
             session['email'] = email
             session['full_name'] = account['full_name']
             session['user_id'] = account['Id']  # Store user ID in session
-            extension_id = request.args.get('ext_id', 'default_extension_id')
-            full_name_encoded = quote(account['full_name'])
-            user_id = account['Id']  # Retrieve user_id from the database
-            # Pass both user_id and full_name in the redirect URL
-            # Fetch today's request_count from daily_usage for this user
-            today = datetime.date.today()
-            cursor.execute('SELECT request_count FROM daily_usage WHERE user_id = %s AND date = %s', (user_id, today))
-            usage = cursor.fetchone()
-
-            request_count = usage['request_count'] if usage else 0  # Default to 0 if no usage record exists for today
-
-            # Pass both user_id, full_name, and request_count in the redirect URL
             return redirect(url_for('dashboard'))
         else:
             flash('Invalid login attempt.', 'danger')
@@ -124,26 +112,25 @@ def dashboard():
         total_comments = comments_count['total_comments'] if comments_count else 0
 
         # Pass the information to the dashboard template
-        return render_template('dashboard.html', user_id=user_id, full_name=full_name, request_count=request_count, total_comments=total_comments)
+        return render_template('dashboard.html', user_id=user_id, full_name=full_name, request_count=request_count, total_comments=total_comments, active_page='dashboard')
 
     # Redirect to login if not logged in
     return redirect('/login')
-
 
 @app.route("/table")
 def table():
     if 'user_id' in session:
         user_id = session['user_id']
-        return render_template('table.html', user_id=user_id)
-    # return render_template("table.html", comments=json.dumps(comments))
+        return render_template('table.html', user_id=user_id, active_page='table')
+    return redirect('/login')  # Redirect if not logged in
 
 @app.route("/billing")
 def billing():
-    return render_template("billing.html")
+    return render_template("billing.html", active_page='billing')
 
 @app.route("/notifications")
 def notifications():
-    return render_template("notifications.html")
+    return render_template("notifications.html", active_page='notifications')
 
 @app.route("/profile", methods=['GET', 'POST'])
 def profile():
@@ -170,7 +157,7 @@ def profile():
             cursor.execute('UPDATE user SET password = %s WHERE Id = %s', (hashed_password, user_id))
         elif new_password != confirm_password:
             flash('Passwords do not match!', 'danger')
-            return render_template('profile.html', current_user={'name': session['full_name']})
+            return render_template('profile.html', current_user={'full_name': session['full_name']})
         
         mysql.connection.commit()
         flash('Profile updated successfully!', 'success')
@@ -183,17 +170,16 @@ def profile():
     user = cursor.fetchone()
     cursor.close()
 
-    return render_template('profile.html', current_user=user)
+    # Pass user info to the template
+    return render_template('profile.html', current_user=user,  active_page='profile')
 
 @app.route('/signout')
 def signout():
     session.clear()  # Clear the session data
     return redirect('/login')  # Redirect to login page
 
-
 @app.route("/")
 def home():
-    # return render_template("dashboard.html")  # or any other default section
     if 'email' in session:
         return redirect(url_for('dashboard'))
     return redirect(url_for('login'))

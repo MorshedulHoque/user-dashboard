@@ -134,9 +134,6 @@ def notifications():
 
 @app.route("/profile", methods=['GET', 'POST'])
 def profile():
-<<<<<<< HEAD
-    return render_template("profile.html", active_page='profile')
-=======
     # Ensure user is logged in
     if 'user_id' not in session:
         return redirect(url_for('login'))
@@ -160,7 +157,7 @@ def profile():
             cursor.execute('UPDATE user SET password = %s WHERE Id = %s', (hashed_password, user_id))
         elif new_password != confirm_password:
             flash('Passwords do not match!', 'danger')
-            return render_template('profile.html', current_user={'name': session['full_name']})
+            return render_template('profile.html', current_user={'full_name': session['full_name']})
         
         mysql.connection.commit()
         flash('Profile updated successfully!', 'success')
@@ -173,8 +170,8 @@ def profile():
     user = cursor.fetchone()
     cursor.close()
 
-    return render_template('profile.html', current_user=user)
->>>>>>> origin/main
+    # Pass user info to the template
+    return render_template('profile.html', current_user=user,  active_page='profile')
 
 @app.route('/signout')
 def signout():

@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-5 mx-14">
-    <h2 class="text-3xl font-bold mb-6 text-gray-800">Welcome to Your Dashboard</h2>
-    <div class="table-wrapper overflow-y-auto max-h-[700px] rounded-lg shadow-lg border border-gray-300">
+<div class="container mt-5 mx-auto px-3 lg:px-10 xl:px-14">
+    <h2 class="text-2xl lg:text-3xl font-bold mb-6 text-gray-800">Welcome to Your Dashboard</h2>
+
+    <!-- Make table wrapper responsive with horizontal scroll for smaller screens -->
+    <div class="table-wrapper overflow-x-auto max-h-[500px] lg:max-h-[500px] xl:max-h-[500px] 2xl:max-h-[600px] rounded-lg shadow-lg border border-gray-300">
         <table class="min-w-full bg-white border-collapse">
             <thead class="bg-sky-800 text-white sticky top-0 z-10">
                 <tr>
-                    <th class="py-4 px-6 text-left text-sm font-semibold">#</th>
-                    <th class="py-4 px-6 text-left text-sm font-semibold">Post Text</th>
-                    <th class="py-4 px-6 text-left text-sm font-semibold">Generated Comment</th>
-                    <th class="py-4 px-6 text-left text-sm font-semibold">Emotion</th>
-                    <th class="py-4 px-6 text-left text-sm font-semibold">Date</th>
+                    <th class="py-3 px-3 lg:px-5 text-left text-xs lg:text-sm font-semibold">#</th>
+                    <th class="py-3 px-3 lg:px-5 text-left text-xs lg:text-sm font-semibold">Post Text</th>
+                    <th class="py-3 px-3 lg:px-5 text-left text-xs lg:text-sm font-semibold">Generated Comment</th>
+                    <th class="py-3 px-3 lg:px-5 text-left text-xs lg:text-sm font-semibold">Emotion</th>
+                    <th class="py-3 px-3 lg:px-5 text-left text-xs lg:text-sm font-semibold">Date</th>
                 </tr>
             </thead>
             <tbody id="commentsTable" class="bg-gray-50 text-gray-700">
@@ -23,8 +25,8 @@
 
 <!-- Modal -->
 <div id="modal" class="fixed inset-0 z-50 hidden bg-gray-800 bg-opacity-75 flex items-center justify-center">
-    <div class="bg-white rounded-lg p-6 w-11/12 max-w-lg">
-        <h2 class="text-xl font-semibold mb-4">Details</h2>
+    <div class="bg-white rounded-lg p-5 w-11/12 max-w-lg">
+        <h2 class="text-lg lg:text-xl font-semibold mb-4">Details</h2>
         <div id="modalContent"></div>
         <button id="closeModal" class="mt-4 text-white bg-sky-900 hover:bg-sky-950 px-4 py-2 rounded">Close</button>
     </div>
@@ -33,77 +35,76 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-    // Function to truncate text
-    function truncateText(text, length) {
-        if (text.length <= length) {
-            return text;
-        } else {
-            return text.substring(0, length) + '...'; // Append ellipsis
+        // Function to truncate text
+        function truncateText(text, length) {
+            if (text.length <= length) {
+                return text;
+            } else {
+                return text.substring(0, length) + '...'; // Append ellipsis
+            }
         }
-    }
 
-    // AJAX request to get the comments
-    $.ajax({
-        url: '/get_comments/{{ user_id }}', // Flask endpoint
-        method: 'GET',
-        dataType: 'json',
-        success: function(comments) {
-            var tableBody = $('#commentsTable');
-            comments.forEach(function(comment, index) {
-                var postText = truncateText(comment.post_text, 50); // Adjust length here
-                var postComment = truncateText(comment.generated_comment, 50); // Adjust length here
+        // AJAX request to get the comments
+        $.ajax({
+            url: '/get_comments/{{ user_id }}', // Flask endpoint
+            method: 'GET',
+            dataType: 'json',
+            success: function(comments) {
+                var tableBody = $('#commentsTable');
+                comments.forEach(function(comment, index) {
+                    var postText = truncateText(comment.post_text, 50); // Adjust length here
+                    var postComment = truncateText(comment.generated_comment, 50); // Adjust length here
 
-                var row = `<tr class="hover:bg-gray-200 transition duration-300">
-                    <th class="py-4 px-6 border-b border-gray-300 text-sm font-medium">${index + 1}</th>
-                    <td class="py-4 px-6 border-b border-gray-300">
-                        <div class="text-preview font-medium text-gray-800">${postText}</div>
-                        <span class="show-more-post text-blue-600 cursor-pointer hover:underline" data-text="${comment.post_text}">Show More</span>
-                    </td>
-                    <td class="py-4 px-6 border-b border-gray-300">
-                        <div class="text-preview font-medium text-gray-800">${postComment}</div>
-                        <span class="show-more-comment text-blue-600 cursor-pointer hover:underline" data-text="${comment.generated_comment}">Show More</span>
-                    </td>
-                    <td class="py-4 px-6 border-b border-gray-300 text-sm font-medium">${comment.emotion}</td>
-                    <td class="py-4 px-6 border-b border-gray-300 text-sm font-medium">${new Date(comment.created_at).toLocaleString()}</td>
-                </tr>`;
-                tableBody.append(row);
-            });
+                    var row = `<tr class="hover:bg-gray-200 transition duration-300">
+    <th class="py-2 px-2 border-b border-gray-300 text-xs font-medium lg:py-2 lg:px-2 lg:text-xs xl:py-3 xl:px-3 xl:text-xs 2xl:py-4 2xl:px-4 2xl:text-base">${index + 1}</th>
+    <td class="py-2 px-2 border-b border-gray-300 lg:py-2 lg:px-2 lg:text-xs xl:py-3 xl:px-3 xl:text-xs 2xl:py-4 2xl:px-4 2xl:text-base">
+        <div class="text-preview font-medium text-gray-800">${postText}</div>
+        <span class="show-more-post text-blue-600 cursor-pointer hover:underline" data-text="${comment.post_text}">Show More</span>
+    </td>
+    <td class="py-2 px-2 border-b border-gray-300 lg:py-2 lg:px-2 lg:text-xs xl:py-2 xl:px-2 xl:text-xs 2xl:py-4 2xl:px-4 2xl:text-base">
+        <div class="text-preview font-medium text-gray-800">${postComment}</div>
+        <span class="show-more-comment text-blue-600 cursor-pointer hover:underline" data-text="${comment.generated_comment}">Show More</span>
+    </td>
+    <td class="py-2 px-2 border-b border-gray-300 text-xs font-medium lg:py-2 lg:px-2 lg:text-xs xl:py-2 xl:px-2 xl:text-xs 2xl:py-4 2xl:px-4 2xl:text-base">${comment.emotion}</td>
+    <td class="py-2 px-2 border-b border-gray-300 text-xs font-medium lg:py-2 lg:px-2 lg:text-xs xl:py-2 xl:px-2 xl:text-xs 2xl:py-4 2xl:px-4 2xl:text-base">${new Date(comment.created_at).toLocaleString()}</td>
+</tr>`;
+                    tableBody.append(row);
+                });
 
-            // Show modal on click of Show more for post text
-            $(document).on('click', '.show-more-post', function() {
-                var fullText = $(this).data('text');
-                var modalContent = `<p><strong>Post Text:</strong> ${fullText}</p>`;
-                $('#modalContent').html(modalContent);
-                $('#modal').removeClass('hidden');
-            });
+                // Show modal on click of Show more for post text
+                $(document).on('click', '.show-more-post', function() {
+                    var fullText = $(this).data('text');
+                    var modalContent = `<p><strong>Post Text:</strong> ${fullText}</p>`;
+                    $('#modalContent').html(modalContent);
+                    $('#modal').removeClass('hidden');
+                });
 
-            // Show modal on click of Show more for generated comment
-            $(document).on('click', '.show-more-comment', function() {
-                var fullText = $(this).data('text');
-                var modalContent = `<p><strong>Generated Comment:</strong> ${fullText}</p>`;
-                $('#modalContent').html(modalContent);
-                $('#modal').removeClass('hidden');
-            });
+                // Show modal on click of Show more for generated comment
+                $(document).on('click', '.show-more-comment', function() {
+                    var fullText = $(this).data('text');
+                    var modalContent = `<p><strong>Generated Comment:</strong> ${fullText}</p>`;
+                    $('#modalContent').html(modalContent);
+                    $('#modal').removeClass('hidden');
+                });
 
-            // Close modal on clicking the close button
-            $('#closeModal').on('click', function() {
-                $('#modal').addClass('hidden');
-            });
-
-            // Close modal when clicking outside of it
-            $('#modal').on('click', function(event) {
-                if ($(event.target).is('#modal')) {
+                // Close modal on clicking the close button
+                $('#closeModal').on('click', function() {
                     $('#modal').addClass('hidden');
-                }
-            });
-        },
-        error: function() {
-            var tableBody = $('#commentsTable');
-            tableBody.append(`<tr><td colspan="5" class="py-4 text-center border-b border-gray-300">Failed to load comments. Please try again later.</td></tr>`);
-        }
-    });
-});
+                });
 
+                // Close modal when clicking outside of it
+                $('#modal').on('click', function(event) {
+                    if ($(event.target).is('#modal')) {
+                        $('#modal').addClass('hidden');
+                    }
+                });
+            },
+            error: function() {
+                var tableBody = $('#commentsTable');
+                tableBody.append(`<tr><td colspan="5" class="py-4 text-center border-b border-gray-300">Failed to load comments. Please try again later.</td></tr>`);
+            }
+        });
+    });
 </script>
 
 {% endblock %}

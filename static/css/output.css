@@ -4274,6 +4274,10 @@ details.collapse summary::-webkit-details-marker {
   max-height: 24rem;
 }
 
+.max-h-\[500px\] {
+  max-height: 500px;
+}
+
 .max-h-\[400px\] {
   max-height: 400px;
 }
@@ -4282,13 +4286,12 @@ details.collapse summary::-webkit-details-marker {
   max-height: 100%;
 }
 
-.max-h-screen {
-  max-height: 100vh;
+.max-h-\[400px\] {
+  max-height: 400px;
 }
 
-.min-h-fit {
-  min-height: -moz-fit-content;
-  min-height: fit-content;
+.max-h-\[500px\] {
+  max-height: 500px;
 }
 
 .min-h-full {
@@ -5260,87 +5263,9 @@ details.collapse summary::-webkit-details-marker {
   }
 }
 
-@media (min-width: 768px) {
-  @media (hover:hover) {
-    .md\:table tr.hover:hover,.md\:table tr.hover:nth-child(even):hover {
-      --tw-bg-opacity: 1;
-      background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
-    }
-  }
-
-  .md\:table {
-    position: relative;
-    width: 100%;
-    border-radius: var(--rounded-box, 1rem);
-    text-align: left;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
-  .md\:table :where(.table-pin-rows thead tr) {
-    position: sticky;
-    top: 0px;
-    z-index: 1;
-    --tw-bg-opacity: 1;
-    background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
-  }
-
-  .md\:table :where(.table-pin-rows tfoot tr) {
-    position: sticky;
-    bottom: 0px;
-    z-index: 1;
-    --tw-bg-opacity: 1;
-    background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
-  }
-
-  .md\:table :where(.table-pin-cols tr th) {
-    position: sticky;
-    left: 0px;
-    right: 0px;
-    --tw-bg-opacity: 1;
-    background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
-  }
-
-  .md\:table:where([dir="rtl"], [dir="rtl"] *) {
-    text-align: right;
-  }
-
-  .md\:table :where(th, td) {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    vertical-align: middle;
-  }
-
-  .md\:table tr.active,.md\:table tr.active:nth-child(even) {
-    --tw-bg-opacity: 1;
-    background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
-  }
-
-  .md\:table :where(thead tr, tbody tr:not(:last-child), tbody tr:first-child:last-child) {
-    border-bottom-width: 1px;
-    --tw-border-opacity: 1;
-    border-bottom-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
-  }
-
-  .md\:table :where(thead, tfoot) {
-    white-space: nowrap;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 700;
-    color: var(--fallback-bc,oklch(var(--bc)/0.6));
-  }
-
-  .md\:table :where(tfoot) {
-    border-top-width: 1px;
-    --tw-border-opacity: 1;
-    border-top-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
-  }
-}
-
-.hover\:-translate-y-1:hover {
-  --tw-translate-y: -0.25rem;
+.hover\:scale-100:hover {
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 

@@ -4074,6 +4074,14 @@ details.collapse summary::-webkit-details-marker {
   top: 1.25rem;
 }
 
+.right-4 {
+  right: 1rem;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -4174,6 +4182,18 @@ details.collapse summary::-webkit-details-marker {
   margin-top: 1.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -4254,8 +4274,8 @@ details.collapse summary::-webkit-details-marker {
   max-height: 24rem;
 }
 
-.max-h-\[700px\] {
-  max-height: 700px;
+.max-h-\[500px\] {
+  max-height: 500px;
 }
 
 .max-h-full {
@@ -4266,8 +4286,12 @@ details.collapse summary::-webkit-details-marker {
   max-height: 100vh;
 }
 
-.max-h-\[500px\] {
-  max-height: 500px;
+.max-h-\[700px\] {
+  max-height: 700px;
+}
+
+.max-h-\[400px\] {
+  max-height: 400px;
 }
 
 .min-h-full {
@@ -4276,6 +4300,11 @@ details.collapse summary::-webkit-details-marker {
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-fit {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
 }
 
 .w-1 {
@@ -4386,8 +4415,12 @@ details.collapse summary::-webkit-details-marker {
   width: 100%;
 }
 
-.min-w-full {
-  min-width: 100%;
+.w-10\/12 {
+  width: 83.333333%;
+}
+
+.min-w-96 {
+  min-width: 24rem;
 }
 
 .min-w-fit {
@@ -4395,8 +4428,8 @@ details.collapse summary::-webkit-details-marker {
   min-width: fit-content;
 }
 
-.min-w-96 {
-  min-width: 24rem;
+.min-w-full {
+  min-width: 100%;
 }
 
 .max-w-7xl {
@@ -4667,11 +4700,6 @@ details.collapse summary::-webkit-details-marker {
   border-style: none;
 }
 
-.border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
 .border-blue-200 {
   --tw-border-opacity: 1;
   border-color: rgb(191 219 254 / var(--tw-border-opacity));
@@ -4680,6 +4708,11 @@ details.collapse summary::-webkit-details-marker {
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
 .border-green-200 {
@@ -4695,6 +4728,16 @@ details.collapse summary::-webkit-details-marker {
 .bg-base-100 {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
 
 .bg-blue-500 {
@@ -4732,9 +4775,24 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
+}
+
 .bg-indigo-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(129 140 248 / var(--tw-bg-opacity));
+}
+
+.bg-purple-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(168 85 247 / var(--tw-bg-opacity));
+}
+
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
 }
 
 .bg-red-950 {
@@ -4762,19 +4820,9 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-blue-100 {
+.bg-yellow-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
-}
-
-.bg-green-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
-}
-
-.bg-red-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-75 {
@@ -4835,14 +4883,29 @@ details.collapse summary::-webkit-details-marker {
   padding-right: 2.5rem;
 }
 
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
 .px-14 {
   padding-left: 3.5rem;
   padding-right: 3.5rem;
 }
 
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
 .px-3 {
@@ -4900,19 +4963,9 @@ details.collapse summary::-webkit-details-marker {
   padding-bottom: 2rem;
 }
 
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
-
-.px-16 {
-  padding-left: 4rem;
-  padding-right: 4rem;
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .pb-2 {
@@ -4937,6 +4990,14 @@ details.collapse summary::-webkit-details-marker {
 
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 
 .text-left {
@@ -5058,6 +5119,11 @@ details.collapse summary::-webkit-details-marker {
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
+.text-green-800 {
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity));
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -5066,6 +5132,11 @@ details.collapse summary::-webkit-details-marker {
 .text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
+.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
 }
 
 .text-red-950 {
@@ -5081,16 +5152,6 @@ details.collapse summary::-webkit-details-marker {
 .text-yellow-500 {
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity));
-}
-
-.text-green-800 {
-  --tw-text-opacity: 1;
-  color: rgb(22 101 52 / var(--tw-text-opacity));
-}
-
-.text-red-800 {
-  --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -5163,6 +5224,10 @@ details.collapse summary::-webkit-details-marker {
 
 .duration-500 {
   transition-duration: 500ms;
+}
+
+.duration-150 {
+  transition-duration: 150ms;
 }
 
 .ease-in-out {
@@ -5362,12 +5427,20 @@ details.collapse summary::-webkit-details-marker {
     width: 11rem;
   }
 
+  .sm\:w-40 {
+    width: 10rem;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sm\:p-4 {
     padding: 1rem;
+  }
+
+  .sm\:p-3 {
+    padding: 0.75rem;
   }
 }
 
@@ -5388,6 +5461,10 @@ details.collapse summary::-webkit-details-marker {
     width: 14rem;
   }
 
+  .md\:w-48 {
+    width: 12rem;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -5396,9 +5473,8 @@ details.collapse summary::-webkit-details-marker {
     padding: 1.25rem;
   }
 
-  .md\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  .md\:p-4 {
+    padding: 1rem;
   }
 
   .md\:px-6 {
@@ -5412,20 +5488,24 @@ details.collapse summary::-webkit-details-marker {
     margin-bottom: 1rem;
   }
 
+  .lg\:mb-3 {
+    margin-bottom: 0.75rem;
+  }
+
   .lg\:h-10 {
     height: 2.5rem;
   }
 
-  .lg\:max-h-\[600px\] {
-    max-height: 600px;
-  }
-
-  .lg\:max-h-\[400px\] {
-    max-height: 400px;
+  .lg\:h-9 {
+    height: 2.25rem;
   }
 
   .lg\:max-h-\[500px\] {
     max-height: 500px;
+  }
+
+  .lg\:max-h-\[400px\] {
+    max-height: 400px;
   }
 
   .lg\:min-h-\[320px\] {
@@ -5444,12 +5524,32 @@ details.collapse summary::-webkit-details-marker {
     width: 16rem;
   }
 
+  .lg\:w-52 {
+    width: 13rem;
+  }
+
+  .lg\:w-56 {
+    width: 14rem;
+  }
+
+  .lg\:w-9 {
+    width: 2.25rem;
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .lg\:gap-6 {
+    gap: 1.5rem;
+  }
+
   .lg\:p-6 {
     padding: 1.5rem;
+  }
+
+  .lg\:p-5 {
+    padding: 1.25rem;
   }
 
   .lg\:px-10 {
@@ -5467,14 +5567,24 @@ details.collapse summary::-webkit-details-marker {
     padding-right: 1.25rem;
   }
 
+  .lg\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .lg\:py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
 
-  .lg\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  .lg\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .lg\:text-3xl {
@@ -5506,16 +5616,6 @@ details.collapse summary::-webkit-details-marker {
     font-size: 0.75rem;
     line-height: 1rem;
   }
-
-  .lg\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .lg\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
 }
 
 @media (min-width: 1280px) {
@@ -5527,24 +5627,20 @@ details.collapse summary::-webkit-details-marker {
     height: 3rem;
   }
 
-  .xl\:max-h-\[700px\] {
-    max-height: 700px;
+  .xl\:h-10 {
+    height: 2.5rem;
   }
 
   .xl\:max-h-\[500px\] {
     max-height: 500px;
   }
 
-  .xl\:max-h-\[400px\] {
-    max-height: 400px;
-  }
-
-  .xl\:max-h-\[550px\] {
-    max-height: 550px;
-  }
-
   .xl\:min-h-\[320px\] {
     min-height: 320px;
+  }
+
+  .xl\:min-h-\[300px\] {
+    min-height: 300px;
   }
 
   .xl\:w-12 {
@@ -5559,13 +5655,35 @@ details.collapse summary::-webkit-details-marker {
     width: 18rem;
   }
 
+  .xl\:w-10 {
+    width: 2.5rem;
+  }
+
+  .xl\:w-56 {
+    width: 14rem;
+  }
+
   .xl\:p-7 {
     padding: 1.75rem;
+  }
+
+  .xl\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .xl\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   .xl\:px-14 {
     padding-left: 3.5rem;
     padding-right: 3.5rem;
+  }
+
+  .xl\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
   .xl\:px-2 {
@@ -5588,44 +5706,19 @@ details.collapse summary::-webkit-details-marker {
     padding-bottom: 0.75rem;
   }
 
-  .xl\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .xl\:py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  .xl\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-
-  .xl\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
-  .xl\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-
-  .xl\:px-16 {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-
-  .xl\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  .xl\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .xl\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .xl\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .xl\:text-xl {
@@ -5637,39 +5730,28 @@ details.collapse summary::-webkit-details-marker {
     font-size: 0.75rem;
     line-height: 1rem;
   }
-
-  .xl\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
-  .xl\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
-  }
-
-  .xl\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .xl\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
 }
 
 @media (min-width: 1536px) {
-  .\32xl\:max-h-\[700px\] {
-    max-height: 700px;
-  }
-
   .\32xl\:max-h-\[600px\] {
     max-height: 600px;
   }
 
-  .\32xl\:min-h-\[350px\] {
-    min-height: 350px;
+  .\32xl\:max-h-\[500px\] {
+    max-height: 500px;
+  }
+
+  .\32xl\:min-h-\[320px\] {
+    min-height: 320px;
+  }
+
+  .\32xl\:min-h-\[300px\] {
+    min-height: 300px;
+  }
+
+  .\32xl\:min-h-fit {
+    min-height: -moz-fit-content;
+    min-height: fit-content;
   }
 
   .\32xl\:w-72 {
@@ -5680,19 +5762,8 @@ details.collapse summary::-webkit-details-marker {
     width: 20rem;
   }
 
-  .\32xl\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .\32xl\:py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  .\32xl\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
+  .\32xl\:w-60 {
+    width: 15rem;
   }
 
   .\32xl\:px-12 {
@@ -5700,9 +5771,29 @@ details.collapse summary::-webkit-details-marker {
     padding-right: 3rem;
   }
 
-  .\32xl\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
+  .\32xl\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .\32xl\:px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .\32xl\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .\32xl\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .\32xl\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .\32xl\:text-4xl {
@@ -5710,8 +5801,18 @@ details.collapse summary::-webkit-details-marker {
     line-height: 2.5rem;
   }
 
+  .\32xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
   .\32xl\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .\32xl\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 }
